@@ -1,0 +1,7 @@
+SELECT p.ID AS project_id,
+       DATEDIFF('MONTH', p.START_DATE, p.FINISH_DATE) AS duration_months
+FROM project p
+WHERE DATEDIFF('MONTH', p.START_DATE, p.FINISH_DATE) = (
+    SELECT MAX(DATEDIFF('MONTH', START_DATE, FINISH_DATE))
+    FROM project
+);
